@@ -1,6 +1,4 @@
-import {
-    Battle
-} from '../models/schema';
+import {Battle} from '../models/schema';
 
 const getStat = (req, res) => {
     Battle.findMostActiveAttackerKing().then((result) => {

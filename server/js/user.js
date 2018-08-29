@@ -1,14 +1,10 @@
-import {
-    User
-} from '../models/users';
-
+import {User} from '../models/users';
 const _ = require('lodash');
 
-
 const createNewUser = (req, res) => {
-    var body = _.pick(req.body, ['email', 'password']);
+    let body = _.pick(req.body, ['email', 'password']);
 
-    var user = new User(body);
+    let user = new User(body);
     user.save().then(() => {
         return user.generateAuthToken();
     }).then((token) => {
@@ -20,7 +16,7 @@ const createNewUser = (req, res) => {
 
 
 const loginUser = (req, res) => {
-    var body = _.pick(req.body, ['email', 'password']);
+    let body = _.pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password).then((user) => {
         return user.generateAuthToken().then((token) => {
 

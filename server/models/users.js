@@ -34,8 +34,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.toJSON = function () {
-    var user = this;
-    var userObject = user.toObject();
+    let user = this;
+    let userObject = user.toObject();
 
     return _.pick(userObject, ['_id', 'email']);
 }
@@ -46,9 +46,9 @@ UserSchema.methods.generateAuthToken = function () {
     //abc123# ====> the same could have done with the help of process(env) variable as well
     //but as of now i am doing hard code here.
 
-    var user = this;
-    var access = 'auth';
-    var token = jwt.sign({
+    let user = this;
+    let access = 'auth';
+    let token = jwt.sign({
         _id: user._id.toHexString()
     }, 'abc123#').toString();
     user.tokens.push({
@@ -64,8 +64,8 @@ UserSchema.methods.generateAuthToken = function () {
 
 UserSchema.statics.findByToken = function (token) {
 
-    var User = this;
-    var decoded;
+    let User = this;
+    let decoded;
     try {
 
         //abc123# ====> the same could have done with the help of process(env) variable as well
@@ -76,7 +76,7 @@ UserSchema.statics.findByToken = function (token) {
         return Promise.reject();
     }
 
-    var userData = User.findOne({
+    let userData = User.findOne({
         '_id': decoded._id,
         'tokens.token': token,
         'tokens.access': 'auth'
@@ -86,7 +86,7 @@ UserSchema.statics.findByToken = function (token) {
 
 UserSchema.pre('save', function (next) {
 
-    var user = this;
+    let user = this;
 
     if (user.isModified('password')) {
 
@@ -106,7 +106,7 @@ UserSchema.pre('save', function (next) {
 });
 
 UserSchema.statics.findByCredentials = function (email, password) {
-    var User = this;
+    let User = this;
     return User.findOne({
         email
     }).then((user) => {
@@ -128,7 +128,7 @@ UserSchema.statics.findByCredentials = function (email, password) {
     });
 }
 
-var User = mongoose.model('user', UserSchema);
+const User = mongoose.model('user', UserSchema);
 
 module.exports = {
     User

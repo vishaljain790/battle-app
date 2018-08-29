@@ -1,6 +1,4 @@
-import {
-    Battle
-} from '../models/schema';
+import {Battle} from '../models/schema';
 
 const getBattleCount = (req, res) => {
     Battle.find({

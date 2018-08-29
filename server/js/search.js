@@ -1,6 +1,4 @@
-import {
-    Battle
-} from '../models/schema';
+import {Battle} from '../models/schema';
 
 
 //****King name is mandatory in case to fetch data  */
