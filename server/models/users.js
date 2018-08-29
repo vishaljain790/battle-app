@@ -42,6 +42,10 @@ UserSchema.methods.toJSON = function () {
 
 UserSchema.methods.generateAuthToken = function () {
 
+
+    //abc123# ====> the same could have done with the help of process(env) variable as well
+    //but as of now i am doing hard code here.
+
     var user = this;
     var access = 'auth';
     var token = jwt.sign({
@@ -63,6 +67,9 @@ UserSchema.statics.findByToken = function (token) {
     var User = this;
     var decoded;
     try {
+
+        //abc123# ====> the same could have done with the help of process(env) variable as well
+        //but as of now i am doing hard code here.
         decoded = jwt.verify(token, 'abc123#');
     } catch (e) {
 

@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://battleName1992:battlePass987@ds137102.mlab.com:37102/battle-mongo-db', {
+//mongodb://battleName1992:battlePass987@ds137102.mlab.com:37102/battle-mongo-db
+mongoose.connect(process.env.mongo_db_connection_url, {
     useNewUrlParser: true
 });
 
